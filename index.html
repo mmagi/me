@@ -422,22 +422,13 @@
             }, {"key": "并且", "value": 2}, {"key": "精确性", "value": 2}, {"key": "精确", "value": 2}, {
                 "key": "决定",
                 "value": 2
-            }, {"key": "而且", "value": 2}, {"key": "要求", "value": 2}, {"key": "对人", "value": 2}, {
-                "key": "他会",
-                "value": 2
-            }, {"key": "表露", "value": 2}, {"key": "任何", "value": 2}, {"key": "不做", "value": 2}, {
-                "key": "只是",
-                "value": 2
-            }, {"key": "非常", "value": 2}, {"key": "强大", "value": 2}, {"key": "讨厌", "value": 2}, {
+            }, {"key": "强大", "value": 2}, {"key": "讨厌", "value": 2}, {
                 "key": "通常",
                 "value": 2
             }, {"key": "情况", "value": 2}, {"key": "稳定", "value": 2}, {"key": "方式", "value": 2}, {
                 "key": "进行",
                 "value": 2
-            }, {"key": "希望", "value": 2}, {"key": "他可", "value": 2}, {"key": "受到", "value": 2}, {
-                "key": "能会",
-                "value": 2
-            }, {"key": "当他", "value": 2}, {"key": "正确地", "value": 2}, {"key": "绝对", "value": 2}, {
+            }, {"key": "希望", "value": 2}, {"key": "正确地", "value": 2}, {"key": "绝对", "value": 2}, {
                 "key": "甚至",
                 "value": 2
             }, {"key": "计划", "value": 2}, {"key": "判断", "value": 2}, {
@@ -449,7 +440,7 @@
             }, {"key": "认为", "value": 2}, {"key": "任务", "value": 2}, {"key": "坚定", "value": 2}, {"key": "完成任务", "value": 2}, {"key": "冷静", "value": 2}, {"key": "结构", "value": 2}, {"key": "严谨", "value": 2}, {
                 "key": "工作环境",
                 "value": 2
-            }, {"key": "他不", "value": 2}, {"key": "长期", "value": 2}, {"key": "或者", "value": 2},  {"key": "压力", "value": 2}, {"key": "做出判断和行动之前评估后果", "value": 2}, {
+            }, {"key": "他不", "value": 2}, {"key": "长期", "value": 2},  {"key": "压力", "value": 2}, {"key": "做出判断和行动之前评估后果", "value": 2}, {
                 "key": "成功",
                 "value": 2
             }, {"key": "变得", "value": 2}, {"key": "由于", "value": 2}, {"key": "跟进", "value": 2}, {
@@ -866,7 +857,7 @@
             }, {"key": "自备", "value": 1}, {"key": "外加", "value": 1}, {"key": "吃苦", "value": 1}, {
                 "key": "不愿意",
                 "value": 1
-            }, {"key": "绝壁", "value": 1}, {"key": "是因为", "value": 1}, {
+            }, {
                 "key": "没有意义",
                 "value": 1
             }, {"key": "意义", "value": 1}, {"key": "特别", "value": 1}, {
@@ -1016,7 +1007,7 @@
             }, {"key": "团队", "value": 1}, {"key": "精神", "value": 1}, {"key": "负责", "value": 1}, {"key": "高度", "value": 1}, {
                 "key": "责任心",
                 "value": 1
-            },, {"key": "责任", "value": 1}, {"key": "忠诚", "value": 1}, {
+            }, {"key": "责任", "value": 1}, {"key": "忠诚", "value": 1}, {
                 "key": "他以",
                 "value": 1
             }, {"key": "优秀", "value": 1}, {"key": "成员", "value": 1}, {"key": "自然地", "value": 1}, {
@@ -1078,9 +1069,7 @@
         words = [];
         layout.stop().words(tags.filter(function () {
             return Math.random() > 0.3;
-        }).slice(0,250)).start();
-    }
-    function progress(t) {
+        }).slice(0,150)).start();
     }
     function draw(t, e) {
         scale = e ? Math.min(w / Math.abs(e[1].x - w / 2), w / Math.abs(e[0].x - w / 2), h / Math.abs(e[1].y - h / 2), h / Math.abs(e[0].y - h / 2)) / 2 : 1, words = t;
@@ -1106,18 +1095,10 @@
         n.exit().each(function () {
             r.appendChild(this)
         }), a.transition().duration(1e3).style("opacity", 1e-6).remove(), vis.transition().delay(1e3).duration(750).attr("transform", "translate(" + [w / 2, h / 2] + ")scale(" + scale + ")");
-        svg.style("display","block").transition().duration(1e3).style("opacity",1);
-        setTimeout(generate,5e3);
-    }
-    function downloadPNG() {
-        d3.event.preventDefault();
-        var t = document.createElement("canvas"), e = t.getContext("2d");
-        t.width = w, t.height = h, e.translate(w / 2, h / 2), e.scale(scale, scale), words.forEach(function (t, n) {
-            e.save(), e.translate(t.x, t.y), e.rotate(t.rotate * Math.PI / 180), e.textAlign = "center", e.fillStyle = fill(t.text.toLowerCase()), e.font = t.size + "px " + t.font, e.fillText(t.text, 0, 0), e.restore()
-        }), echoContentType.attr("value", "image/png"), echoInput.attr("value", t.toDataURL("image/png")), echoForm.node().submit()
-    }
-    function downloadSVG() {
-        d3.event.preventDefault(), echoContentType.attr("value", "image/svg+xml;charset=utf-8"), echoInput.attr("value", svg.attr("version", "1.1").attr("xmlns", "http://www.w3.org/2000/svg").node().parentNode.innerHTML), echoForm.node().submit()
+        setTimeout(function () {
+            svg.style("display","block").transition().duration(1e3).style("opacity",1);
+        },1);
+        setTimeout(generate,4e3);
     }
     !function (t) {
         function e() {
