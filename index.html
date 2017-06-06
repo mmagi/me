@@ -1153,7 +1153,7 @@ var _mtac = {};
         var w = p.getContext("2d"), M = {archimedean: d, rectangular: h};
         w.fillStyle = "red", w.textAlign = "center", t.cloud = e
     }("undefined" == typeof exports ? d3.layout || (d3.layout = {}) : exports);
-    var fill = d3.scale.category20b(), svgw = window.outerWidth, svgh = window.outerHeight, words = [], max, scale = 1,
+    var fill = d3.scale.category20b(), svgw = window.innerWidth, svgh = window.innerHeight, words = [], max, scale = 1,
         complete = 0, keyword = "", tags,
         fontSize, maxLength = 30, fetcher;
     var rot = "";
